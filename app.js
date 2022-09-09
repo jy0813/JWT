@@ -2,11 +2,13 @@
 require("dotenv").config();
 
 // db
-const connectDB = require("./connect");
+const connectDB = require("./db/connect");
+const user = require("./db/user");
 
 // server
 const express = require("express");
 const app = express();
+const bcrypt = require("bcryptjs");
 
 // utility middleware
 app.use(express.json());
