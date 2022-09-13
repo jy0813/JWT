@@ -3,14 +3,14 @@ require("dotenv").config();
 
 // db
 const connectDB = require("./db/connect");
-const user = require("./db/user");
+const user = require("./models/user");
 
 // server
 const express = require("express");
 const app = express();
-const bcrypt = require("bcryptjs");
 
 // utility middleware
+const authRouter = require("./routes/auth");
 app.use(express.json());
 
 // start server
