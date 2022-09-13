@@ -1,3 +1,4 @@
+require("dotenv").config();
 const app = require("./app");
 const http = require("http"); // http 내장 모듈
 const server = http.createServer(app); // http 모듈의 createServer 함수를 통해서 express app을 사용한 서버를 만든다.
@@ -10,8 +11,6 @@ const port = process.env.PORT || 6000;
     await mongoose.connect(url, {
       useNewUrlParser: true,
       useUnifiedTopology: true,
-      useFindAndModify: false,
-      useCreateIndex: true,
     });
 
     console.log("DB CONNECTED");

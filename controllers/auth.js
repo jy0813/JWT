@@ -1,3 +1,4 @@
+require("dotenv").config();
 const User = require("../models/user"); // 위에서 설계한 User 정보를 담기위한 document 모델
 const bcrypt = require("bcryptjs"); // 유저가 입력한 password 를 암호화 하기 위한 알고리즘 라이브러리
 const jwt = require("jsonwebtoken");
@@ -65,4 +66,4 @@ const signIn = async (req, res, next) => {
   }
 };
 
-module.exports = { signUp, signIn }; // signUp, signIn 함수를 module 로 내보낸다.
+module.exports = { signUp, signIn, errorGenerator }; // signUp, signIn 함수를 module 로 내보낸다.
