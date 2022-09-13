@@ -1,31 +1,8 @@
-// basic
-require("dotenv").config();
-
-// db
-const connectDB = require("./db/connect");
-const user = require("./models/user");
-
-// server
 const express = require("express");
+const router = require("./routes");
 const app = express();
 
-// utility middleware
-const authRouter = require("./routes/auth");
-app.use(express.json());
+router = require("./routes/index");
+router(app);
 
-// start server
-
-const port = process.env.PORT || 6000;
-
-const start = async () => {
-  try {
-    await connectDB(process.env.DB_URL);
-    app.listen(port, () => {
-      console.log(`servr is listening ${port}`);
-    });
-  } catch (e) {
-    console.log(`error has ${e}`);
-  }
-};
-
-start();
+module.exports = app;
