@@ -1,24 +1,13 @@
-require("dotenv").config();
-const app = require("./app");
-const http = require("http"); // http 내장 모듈
-const server = http.createServer(app); // http 모듈의 createServer 함수를 통해서 express app을 사용한 서버를 만든다.
-const mongoose = require("mongoose");
-const url = process.env.DB_URL;
-const port = process.env.PORT || 6000;
+const express = require("express");
+const connectDB = require("./config/db");
+const app = express();
 
-(async function () {
-  try {
-    await mongoose.connect(url, {
-      useNewUrlParser: true,
-      useUnifiedTopology: true,
-    });
+const PORT = process.env.PORT || 5000;
 
-    console.log("DB CONNECTED");
-    server.listen(port, () => {
-      console.log(`servr is listening ${port}`);
-    });
-  } catch (err) {
-    console.log("DB CONNECTION ERROR");
-    console.log(`error has ${err}`);
-  }
-})(); // 서버를 실행시키는 익명함수를 생성하자마자 실행시킨다.
+app.get("/", (req, res) => {
+  res.send("API Running");
+});
+
+connectDB();
+
+app.listen(PORT, () => console.log(`Server Started On Port ${PORT}`));
