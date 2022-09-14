@@ -1,8 +1,8 @@
 // package
 const mongoose = require("mongoose");
-const config = require("config");
+require("dotenv").config();
 // URI
-const uri = config.get("mongoURI");
+const uri = process.env.DB_URL;
 
 //Connect MongoDB
 
