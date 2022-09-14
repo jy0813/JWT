@@ -2,6 +2,7 @@ const express = require("express");
 const User = require("../../models/User");
 const router = express.Router();
 const bcrypt = require("bcrypt");
+const jwt = require("jsonwebtoken");
 
 /**
  * @route POST api/register
@@ -28,7 +29,19 @@ router.post("/", async (req, res) => {
 
     await user.save(); //db에 user 저장
 
-    res.send("Success");
+    //json web token 생성 및 response
+    const payload = {
+      id: user.id,
+    };
+    /**
+     * @payload token으로 변환할 데이터
+     * @jwtSecret secret key 값
+     * @expiresIn 유효시간
+     */
+    jwt.sign(payload, "jwtSecret", { expiresIn: "1h" }, (err, token) => {
+      if (err) throw err;
+      res.send({ token });
+    });
   } catch {
     console.error(error.message);
     res.status(500).send("server Error");
