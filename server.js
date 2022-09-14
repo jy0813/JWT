@@ -22,7 +22,3 @@ const port = process.env.PORT || 6000;
     console.log(`error has ${err}`);
   }
 })(); // 서버를 실행시키는 익명함수를 생성하자마자 실행시킨다.
-
-app.get("/", (req, res) => {
-  res.sendFile(__dirname + "/views/register.html");
-});
