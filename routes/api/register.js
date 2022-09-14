@@ -31,7 +31,9 @@ router.post("/", async (req, res) => {
 
     //json web token 생성 및 response
     const payload = {
-      id: user.id,
+      user: {
+        id: user.id,
+      },
     };
     /**
      * @payload token으로 변환할 데이터

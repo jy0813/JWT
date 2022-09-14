@@ -14,3 +14,4 @@ connectDB();
 app.listen(PORT, () => console.log(`Server Started On Port ${PORT}`));
 
 app.use("/api/register", require("./routes/api/register"));
+app.use("/api/auth", require("./routes/api/auth"));
